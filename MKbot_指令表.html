@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>MKbot 插件完整指令表</title>
+                <style>
+                    /* 完全复制页面中定义的样式，确保下载后的文档格式一致 */
+                    * { margin:0; padding:0; box-sizing: border-box; }
+                    body { background: #f0f2f5; font-family: 'Segoe UI', 'Roboto', 'Microsoft YaHei', sans-serif; padding: 30px 20px; color: #1e2a3a; }
+                    .document-container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 24px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+                    .title-section { background: linear-gradient(135deg, #1e2a3a 0%, #0f1a24 100%); padding: 20px 28px; }
+                    .title-section h1 { color: white; font-size: 1.8rem; margin-bottom: 6px; }
+                    .title-section p { color: #cbd5e1; font-size: 0.85rem; }
+                    .table-wrapper { overflow-x: auto; padding: 20px 24px 32px; }
+                    .instruction-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: white; border-radius: 20px; overflow: hidden; }
+                    .instruction-table th { background: #f8fafc; padding: 14px 12px; border-bottom: 2px solid #e2e8f0; text-align: left; font-weight: 600; }
+                    .instruction-table td { padding: 12px 12px; border-bottom: 1px solid #eef2f6; vertical-align: top; }
+                    .instruction-table tr:hover td { background-color: #fefce8; }
+                    .badge { display: inline-block; padding: 4px 10px; border-radius: 30px; font-size: 0.7rem; font-weight: 600; background: #f1f5f9; color: #1e293b; }
+                    .badge.owner { background: #dbeafe; color: #1e40af; }
+                    .badge.admin { background: #dcfce7; color: #166534; }
+                    .badge.user { background: #f1f5f9; color: #334155; }
+                    .code-inline { font-family: monospace; background: #f1f5f9; padding: 2px 6px; border-radius: 12px; font-size: 0.8rem; }
+                    .footer-note { background: #fefce8; margin: 0 24px 24px; padding: 16px 20px; border-radius: 20px; font-size: 0.8rem; border-left: 4px solid #eab308; }
+                    @media (max-width: 680px) { body { padding: 16px 12px; } .instruction-table th, .instruction-table td { padding: 10px 8px; } }
+                </style>
+            </head>
+            <body>
+                <div class="document-container" id="mainDocument">
+    
+
+    <div class="table-wrapper" id="tableContent">
+        <!-- 以下为完整的指令表格，不含任何按钮（下载时只保留这部分+标题，但保留标题区域样式）-->
+        <table class="instruction-table" id="mainTable">
+            <thead>
+                <tr>
+                    <th style="width: 28%">指令格式</th>
+                    <th style="width: 32%">说明</th>
+                    <th style="width: 12%">权限</th>
+                    <th style="width: 12%">适用</th>
+                    <th style="width: 16%">所需事件</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 一、授权系统 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🔐 一、授权系统（卡密/授权）</td></tr>
+                <tr><td><span class="code-inline">授权判断</span></td><td>查看当前群/私聊授权状态</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">授权判断[群号]</span></td><td>查看指定群的授权状态</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">授权系统</span></td><td>显示授权系统帮助（含后台指令）</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">使用卡密[卡密]</span></td><td>使用卡密进行授权续期/新增</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">生成天卡授权 … 生成永久授权</span></td><td>生成单张对应类型卡密</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">生成天卡授权[数量] … 生成永久授权[数量]</span></td><td>批量生成卡密 (1-100)，私聊发送</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">添加天卡授权 … 添加永久授权</span></td><td>给当前群/私聊添加授权时长</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">添加天卡授权[群号] … 添加永久授权[群号]</span></td><td>给指定群添加授权时长</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">卡密列表</span></td><td>列出所有未使用卡密（私聊合并转发）</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">删除卡密[卡密]</span></td><td>删除指定卡密</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">清空全部</span></td><td>清空所有卡密数据</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">删除授权 / 取消授权</span></td><td>删除当前群/私聊的授权</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">删除授权[群号] / 取消授权[群号]</span></td><td>删除指定群授权</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+
+                <!-- 二、群管基础 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🛡️ 二、群管基础功能</td></tr>
+                <tr><td><span class="code-inline">群管系统 / 群管菜单</span></td><td>显示完整群管帮助（多层菜单）</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">禁言@人 [时间]</span></td><td>禁言指定成员，时间秒(默认60)</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">解禁@人</span></td><td>解除禁言</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">上管@人</span></td><td>设置管理员（需机器人群主）</td><td><span class="badge owner">主人/群主</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">下管@人</span></td><td>取消管理员</td><td><span class="badge owner">主人/群主</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">踢出@人</span></td><td>踢出成员（不拉黑）</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">黑踢@人</span></td><td>踢出并拉黑（拒绝再次加入）</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">获取禁言列表</span></td><td>查看被禁言成员及结束时间</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">全解群员</span></td><td>解除所有成员禁言（自动跳过高级别）</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">更改群名称[内容] / 更改群名字[内容]</span></td><td>修改群名称</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">更改群头像[图片]</span></td><td>修改群头像</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">发公告[内容] / 发公告[内容][图片]</span></td><td>发送群公告（图片可选）</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">获取群文件列表</span></td><td>获取群文件系统信息（需测试功能）</td><td><span class="badge owner">主人</span></td><td>💬 群</td><td>无(需cs_of)</td></tr>
+                <tr><td><span class="code-inline">全体禁言 / 全体解禁 / 全禁 / 全解</span></td><td>全体禁言或解禁</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+
+                <!-- 三、入群审核/验证 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">📝 三、入群审核 &amp; 入群验证</td></tr>
+                <tr><td><span class="code-inline">设置入群审核条件[准确/包含/模糊多重/准确多重/字数]</span></td><td>设置审核模式</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>入群审核</td></tr>
+                <tr><td><span class="code-inline">设置入群审核单日次数[数量]</span></td><td>每人每天尝试次数</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>入群审核</td></tr>
+                <tr><td><span class="code-inline">设置入群审核字数数量[数量]</span></td><td>字数模式需要的字数下限</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>入群审核</td></tr>
+                <tr><td><span class="code-inline">设置入群审核答案[内容]</span></td><td>准确/包含模式的答案</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>入群审核</td></tr>
+                <tr><td><span class="code-inline">新增审核条件[内容]</span></td><td>添加多重答案</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>入群审核</td></tr>
+                <tr><td><span class="code-inline">查看多重条件列表</span></td><td>显示当前多重答案</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>入群审核</td></tr>
+                <tr><td><span class="code-inline">新增审核过滤词[内容] / 查看审核过滤词</span></td><td>过滤词管理</td><td><span class="badge admin">群管</span>/普通</td><td>💬 群</td><td>入群审核</td></tr>
+                <tr><td><span class="code-inline">取消入群验证[QQ号]</span></td><td>强制取消某成员验证状态</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>入群验证</td></tr>
+                <tr><td><span class="code-inline">设置入群验证次数[数字] / 时长[秒]</span></td><td>设置最大尝试次数和有效时长</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>入群验证</td></tr>
+
+                <!-- 四、头衔系统 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">👑 四、头衔系统</td></tr>
+                <tr><td><span class="code-inline">我要头衔[内容]</span></td><td>自助设置头衔（需机器人群主）</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>自助头衔</td></tr>
+                <tr><td><span class="code-inline">设置头衔@人 [内容]</span></td><td>给成员设置头衔</td><td><span class="badge owner">主人/群主</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">全员头衔[内容] / 全体头衔[内容]</span></td><td>批量设置所有非机器人成员头衔</td><td><span class="badge owner">主人/群主</span></td><td>💬 群</td><td>无</td></tr>
+
+                <!-- 五、清理骨灰 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">💀 五、清理骨灰（长期未发言）</td></tr>
+                <tr><td><span class="code-inline">获取骨灰群员列表</span></td><td>扫描7天未发言成员，生成临时列表</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">查看骨灰群员列表</span></td><td>显示上次扫描结果</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">取消骨灰群员QQ[QQ号] / 取消骨灰群员序号[序号]</span></td><td>从待清理列表移除</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">确定清理全部骨灰群员</span></td><td>踢出列表中所有成员</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">提醒骨灰群员 [自定义内容]</span></td><td>私聊提醒骨灰成员</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+
+                <!-- 六、黑名单 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">⚫ 六、黑名单系统</td></tr>
+                <tr><td><span class="code-inline">黑名单列表 / 本群黑名单列表</span></td><td>显示本群黑名单</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>黑白名单</td></tr>
+                <tr><td><span class="code-inline">全局黑名单列表</span></td><td>显示全局黑名单</td><td><span class="badge owner">主人</span></td><td>💬 群</td><td>黑白名单</td></tr>
+                <tr><td><span class="code-inline">查黑名单[QQ号]</span></td><td>查询QQ是否在黑名单</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>黑白名单</td></tr>
+                <tr><td><span class="code-inline">添加本群黑名单@人 / 添加全局黑名单[QQ]</span></td><td>加入黑名单并立即踢出/黑踢</td><td><span class="badge admin">群管</span>/主人</td><td>💬 群</td><td>黑白名单</td></tr>
+                <tr><td><span class="code-inline">设置本群黑名单处理[踢出/黑踢] / 全局</span></td><td>设置处理方式</td><td><span class="badge admin">群管</span>/主人</td><td>💬 群</td><td>黑白名单</td></tr>
+
+                <!-- 七、违禁词与禁发 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🚫 七、违禁词系统 &amp; 禁发消息</td></tr>
+                <tr><td><span class="code-inline">违禁词列表</span></td><td>显示违禁词及处理方式</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>违禁检测</td></tr>
+                <tr><td><span class="code-inline">添加违禁词[内容] / 删除违禁词[内容] / 清空违禁词</span></td><td>管理违禁词</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>违禁检测</td></tr>
+                <tr><td><span class="code-inline">设置违禁处理禁言 / 撤回 / 撤回禁言</span></td><td>设置处理方式</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>违禁检测</td></tr>
+                <tr><td><span class="code-inline">开启/关闭禁发图片/视频/语音/卡片/合并转发</span></td><td>禁止发送特定类型消息</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>进阶检测</td></tr>
+
+                <!-- 八、发言统计 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">📊 八、发言统计</td></tr>
+                <tr><td><span class="code-inline">发言排行今日榜 / 昨日榜 / 本月榜</span></td><td>发言次数排行榜</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>发言统计</td></tr>
+                <tr><td><span class="code-inline">发言排行个人榜</span></td><td>个人详细统计（今日/本周/本月等）</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>发言统计</td></tr>
+
+                <!-- 九、入群欢迎/退群通知 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🎉 九、入群欢迎 &amp; 退群通知</td></tr>
+                <tr><td><span class="code-inline">设置入群欢迎词#[模板]</span></td><td>设置欢迎语（支持变量）</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>入群欢迎</td></tr>
+                <tr><td><span class="code-inline">设置退群通知词#[模板]</span></td><td>设置退群通知模板</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>退群通知</td></tr>
+
+                <!-- 十、马甲系统 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">♻️ 十、群昵称马甲系统</td></tr>
+                <tr><td><span class="code-inline">设置马甲内容[内容]</span></td><td>设置本群马甲前缀</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>马甲系统</td></tr>
+                <tr><td><span class="code-inline">全员马甲[内容]</span></td><td>所有成员昵称改为“前缀+原昵称”</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>马甲系统</td></tr>
+
+                <!-- 十一、娱乐功能（签到/银行/钓鱼/老婆/漂流瓶/运势等） -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🎮 十一、娱乐功能（游戏/钓鱼/老婆/漂流瓶等）</td></tr>
+                <tr><td><span class="code-inline">签到 / 打卡</span></td><td>每日签到得归笺和诱饵</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">我的货币 / 我的归笺 / 我的信息</span></td><td>查看个人资产</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">归笺排行榜 / 存款排行榜 / 签到排行榜</span></td><td>各类排行</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">存款[数量] / 全部存款 / 取出[数量] / 全部取出</span></td><td>银行存储与取款（含利息）</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">转移归笺#[QQ]#[数量]</span></td><td>转账归笺</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">打劫@人</span></td><td>打劫其他用户（概率成功/失败）</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">钓鱼 / 钓鱼五次 / 钓鱼十次</span></td><td>消耗诱饵钓鱼</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">我的鱼获 / 我的鱼篓</span></td><td>查看钓到的鱼</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">出售 全部鱼 / 出售 鱼名(重量kg) [数量]</span></td><td>出售鱼获获得归笺</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">今日老婆 / 今日老公 / 我的老婆 / 更换老婆</span></td><td>群伴侣系统</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">更改群老婆范围[单群/全群] / 更改群老婆冷却[秒]</span></td><td>设置老婆系统参数</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">漂流瓶 / 抛瓶子 / 捞瓶子 / 我的瓶子 / 赞此瓶子</span></td><td>漂流瓶完整功能</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">mk今日运势</span></td><td>生成今日运势卡片</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">发病文学[对象名] / 搜饰品[关键词] / cs搜饰品[关键词]</span></td><td>随机文案 / CS2饰品搜索</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+                <tr><td><span class="code-inline">三角洲密码 / sjz每日密码 / epic免费游戏 / 查MC服务器</span></td><td>外部接口查询</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>深度娱乐</td></tr>
+
+                <!-- 十二、音乐系统 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🎵 十二、音乐系统</td></tr>
+                <tr><td><span class="code-inline">点歌[歌名] / QQ点歌 / 汽水点歌 / 酷我点歌 / 网易云点歌</span></td><td>多音源点歌</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">选歌[序号] / 卡片选歌 / 语音选歌 / 链接选歌</span></td><td>播放歌曲多种形式</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">收藏歌曲[序号] / 个人歌单 / 取消收藏 / 清空个人收藏歌曲</span></td><td>收藏管理</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">播放收藏[序号] / 卡片播放收藏 / 语音播放收藏</span></td><td>播放收藏的歌曲</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">测试音乐接口</span></td><td>检测音源接口可用性</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+
+                <!-- 十三、视频/图片菜单 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🖼️ 十三、视频/图片接口（看xxx）</td></tr>
+                <tr><td><span class="code-inline">视频菜单 / 图片菜单</span></td><td>显示可用类型列表</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">看[类型]</span></td><td>随机获取视频/图片（如“看小姐姐”）</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+
+                <!-- 十四、问答系统 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">❓ 十四、问答系统</td></tr>
+                <tr><td><span class="code-inline">问答词列表 / 详细问答词列表</span></td><td>查看问答库</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>问答系统</td></tr>
+                <tr><td><span class="code-inline">添加精准问答#问题#答案 / 添加模糊问答</span></td><td>添加问答（支持图片）</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>问答系统</td></tr>
+                <tr><td><span class="code-inline">删除精准问答#问题 / 清空精准问答</span></td><td>删除或清空问答</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>问答系统</td></tr>
+
+                <!-- 十五、发卡系统 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">💳 十五、发卡系统（商品兑换）</td></tr>
+                <tr><td><span class="code-inline">发卡商店 / 兑换商品 商品名 数量</span></td><td>查看商品/购买卡密</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">添加发卡商品 名称 / 修改发卡商品 原名-&gt;新名</span></td><td>商品管理</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">发卡商品定价 名称 价格 / 发卡商品上架/下架</span></td><td>定价和上下架</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">填充发卡商品 名称 / 删除发卡商品 名称 / 清空发卡商品</span></td><td>卡密数据维护</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">查看商品列表</span></td><td>查看所有商品明细（仅私聊）</td><td><span class="badge owner">主人</span></td><td>✉️ 私</td><td>无</td></tr>
+
+                <!-- 十六、插件配置与系统 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">⚙️ 十六、插件配置 &amp; 系统管理</td></tr>
+                <tr><td><span class="code-inline">插件配置 / 开启群聊消息执行[群号] / 关闭群聊消息执行[全部]</span></td><td>插件全局开关</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">开启测试功能 / 开启消息自触 / 开启助手模式</span></td><td>调试开关</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">执行插件数据备份 / 重启服务 / 运行状态</span></td><td>备份/重启/系统监控</td><td><span class="badge owner">主人</span></td><td>🌐 群/私(备份仅私)</td><td>无</td></tr>
+                <tr><td><span class="code-inline">下载最新MK插件 / 下载其他插件#[url]#[名字]</span></td><td>在线更新/安装插件</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">更改机器人昵称[内容] / 更改机器人头像[图片] / 更改机器人性别[男/女]</span></td><td>修改机器人资料</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+
+                <!-- 十七、续火功能 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🔥 十七、续火功能（群聊/好友）</td></tr>
+                <tr><td><span class="code-inline">管理续火 / 设置续火内容[内容] / 设置续火模式[文案/图片]</span></td><td>续火全局设置</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">开启/关闭好友续火[QQ] / 开启/关闭群聊续火[群号]</span></td><td>单独控制</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">开启/关闭全部好友续火 / 开启/关闭全部群聊续火</span></td><td>批量开关</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无</td></tr>
+
+                <!-- 十八、事件开关 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🔘 十八、事件开关（群内/全局）</td></tr>
+                <tr><td><span class="code-inline">事件管理</span></td><td>显示所有事件开关列表及说明</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">开启[事件名] / 关闭[事件名]</span></td><td>切换群内事件（如“开启入群审核”）</td><td><span class="badge admin">群管</span>(全局需主人)</td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">开启全部事件 / 关闭全部事件</span></td><td>批量切换当前群所有事件</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>无</td></tr>
+
+                <!-- 十九、其他实用指令 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🛠️ 十九、其他实用指令</td></tr>
+                <tr><td><span class="code-inline">菜单 / /MK</span></td><td>显示主菜单（文字/图片）</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">赞我 / 点赞</span></td><td>为自己点赞（每日20次）</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>自动点赞(全局)</td></tr>
+                <tr><td><span class="code-inline">拍我 / 截我</span></td><td>拍一拍机器人（需测试功能）</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无(需cs_of)</td></tr>
+                <tr><td><span class="code-inline">图转链接</span></td><td>提取引用消息中的图片/视频直链</td><td><span class="badge user">普通</span></td><td>🌐 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">取数据</span></td><td>获取引用消息的原始OneBot数据（需测试功能）</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>无(需cs_of)</td></tr>
+                <tr><td><span class="code-inline">伪造聊天 (格式 QQ昵称内容)</span></td><td>构造合并转发聊天记录</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>伪造聊天</td></tr>
+                <tr><td><span class="code-inline">更改整点报时文案[内容]</span></td><td>修改本群整点报时消息</td><td><span class="badge admin">群管</span></td><td>💬 群</td><td>整点报时</td></tr>
+
+                <!-- 二十、调试/查询 -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">🔎 二十、调试 &amp; 查询指令</td></tr>
+                <tr><td><span class="code-inline">查群员[QQ] / 查群友[QQ] / 查用户[QQ] / 查群聊[群号]</span></td><td>查询成员/用户/群信息</td><td><span class="badge user">普通</span></td><td>💬 群/私</td><td>无</td></tr>
+                <tr><td><span class="code-inline">获取本群成员 / 群成员列表</span></td><td>列出本群所有成员（合并转发）</td><td><span class="badge user">普通</span></td><td>💬 群</td><td>无</td></tr>
+                <tr><td><span class="code-inline">撤回</span>（回复消息）</td><td>撤回被回复的消息（权限足够时）</td><td><span class="badge admin">群管/主人</span></td><td>💬 群</td><td>无</td></tr>
+
+                <!-- 自动点赞子指令（完整补充） -->
+                <tr><td colspan="5" style="background:#f1f5f9; font-weight:700;">⭐ 二十一、自动点赞子指令（全局事件）</td></tr>
+                <tr><td><span class="code-inline">切换全部自动点赞模式</span></td><td>切换到给所有好友点赞</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>自动点赞(全局)</td></tr>
+                <tr><td><span class="code-inline">切换特定自动点赞模式</span></td><td>切换到只给名单中的好友点赞</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>自动点赞(全局)</td></tr>
+                <tr><td><span class="code-inline">添加自动点赞用户[QQ号]</span></td><td>将QQ加入特定点赞名单</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>自动点赞(全局)</td></tr>
+                <tr><td><span class="code-inline">取消自动点赞用户[QQ号]</span></td><td>从特定点赞名单中移除QQ</td><td><span class="badge owner">主人</span></td><td>🌐 群/私</td><td>自动点赞(全局)</td></tr>
+                </tbody>
+        </table>
+    </div>
+    <div class="footer-note">
+        📌 权限说明：<span class="badge owner">主人</span> 仅限 config.json 中 OwnerQQs 指定QQ；<span class="badge admin">群管</span> 需要机器人管理员权限或开启“管理模式”；<span class="badge user">普通</span> 所有成员可用。<br>
+        🌐 适用：💬群聊  ✉️私聊  🌐两者。<br>
+        ✅ “深度娱乐”可通过 <span class="code-inline">开启/关闭深度娱乐</span> 单独控制群内娱乐指令；“测试功能”需主人开启后部分指令可用。
+    </div>
+</div>
+            </body>
+            </html>
+            
